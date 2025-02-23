@@ -1,0 +1,165 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #1a1a2e; /* Dark background */
+    font-family: 'Montserrat', sans-serif;
+    color: #ffffff; /* White text color */
+    text-align: center;
+    margin: 0;
+    padding: 0;
+    overflow: hidden; /* Prevent scrolling */
+}
+
+.container {
+    position: relative;
+    max-width: 800px;
+    margin: auto;
+    padding: 40px; /* Increased padding for better spacing */
+}
+
+.title {
+    color: #f9f871; /* Soft yellow color for the title */
+    font-size: 2.5em; /* Larger font size for emphasis */
+    margin-bottom: 20px; /* Space below the title */
+}
+
+#birthdayMessage {
+    margin: 20px 0;
+    font-size: 1.2em; /* Slightly larger font for message */
+}
+
+
+/* Star Background Animation */
+.stars {
+   position:absolute;
+   top:-50%;
+   left:-50%;
+   width:200%;
+   height:200%;
+   overflow:hidden; 
+   z-index:-1; /* Place behind other elements */
+}
+
+/* Star Styles */
+.star {
+   position:absolute;
+   background-color:white;
+   border-radius:50%;
+   animation: sparkle infinite alternate; 
+}
+
+/* Keyframes for Sparkling Effect */
+@keyframes sparkle {
+   from { opacity: 0.5; transform: scale(1); }
+   to { opacity: 1; transform: scale(1.5); }
+}
+
+/* Confetti Canvas Styles */
+#confetti-canvas {
+   position:absolute;
+   top:0;
+   left:0;
+   width:100%;
+   height:100%;
+   pointer-events:none; /* Prevent interactions with the canvas */
+}
+
+/* Lottie Animation Styles */
+.lottie-animation {
+   position:absolute;
+   top:10%;
+   left:50%;
+   transform:translateX(-50%);
+   width:600px; /* Width of the Lottie animation */
+   height:auto; 
+}
+
+/* Additional Styling for Elements to Enhance Theme */
+h1, p {
+   animation-duration: 1s;
+   animation-fill-mode: forwards;
+}
+
+h1 {
+   animation-name: fadeInUp; /* Animation for heading */
+}
+
+p {
+   animation-name: fadeInDown; /* Animation for paragraph */
+}
+
+/* Keyframes for Fade In Effects */
+@keyframes fadeInUp {
+   from { opacity: 0; transform: translateY(-20px); }
+   to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes fadeInDown {
+   from { opacity: 0; transform: translateY(20px); }
+   to { opacity: 1; transform: translateY(0); }
+}
+
+/* Additional Styles for a More Refined Look */
+
+h1 {
+    text-shadow: 2px 2px rgba(255,255,255,0.2); /* Soft shadow for depth in title text */
+}
+
+p {
+    line-height: 1.6; /* Improve readability with line height adjustment */
+}
+
+/* Responsive Design Adjustments */
+
+@media (max-width: 600px) {
+    .container {
+        padding: 20px; /* Adjust padding for smaller screens */
+        max-width: calc(100% - 40px); /* Full width minus margins on small screens */ 
+    }
+
+    .title {
+        font-size: 2em; /* Adjust title size on smaller screens */ 
+    }
+
+    .styled-button {
+        font-size: 16px; /* Slightly smaller button text on mobile */ 
+        padding: 12px 25px; /* Adjust button padding on mobile */ 
+    }
+}
+
+.styled-button {
+    background: transparent;
+    border: none; /* Remove default border */
+    color: #ffffff; /* White text color */
+    padding: 15px 30px; /* Padding */
+    font-size: 20px; /* Larger font size for better readability */
+    border-radius: 30px; /* More rounded corners for a friendly look */
+    border: #5b64d1 1px solid;
+    cursor: pointer; /* Pointer cursor on hover */
+    transition: transform 0.2s ease, box-shadow 0.3s ease, background-color 0.3s ease; /* Transition effects */
+    font-weight: bold; /* Bold text for emphasis */
+}
+
+.styled-button:hover {
+    transform: scale(1.05); /* Slightly enlarge on hover */
+    box-shadow: 0 8px 25px rgba(0, 30, 255, 0.5); /* Glow effect on hover */
+}
+
+.styled-button:focus {
+   outline: none; /* Remove default focus outline */
+   box-shadow: 0 0 5px #0376fa, 0 0 10px #0318fc; /* Custom focus effect */
+}
+
+/* Active state for better feedback */
+.styled-button:active {
+    transform: scale(0.95); /* Slightly shrink on click */
+}
+
+.birthday-image {
+    width: 150px; /* Set a fixed width */
+    height: auto; /* Maintain aspect ratio */
+    margin: 20px auto; /* Center the images */
+    display: block; /* Make images block elements */
+}

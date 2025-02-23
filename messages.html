@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Muskan Animation</title>
+    <style>
+        body {
+            background-color: #1a1a2e; /* Dark background */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .name-container {
+            display: flex;
+            white-space: nowrap;
+            overflow: hidden;
+        }
+
+        .letter {
+             font-family: 'YourChosenHandwritingFont', cursive; /* Replace with the exact font name */
+            font-size: 6em;
+            color: #f9f871; /*  yellow color from the image */
+            opacity: 0;
+            display: inline-block;
+            width: 0;
+            transition: width 0.3s ease-out, opacity 0.3s ease-out; /* Adjusted transition speed */
+             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);  /* Add a slight text shadow */
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+<body>
+
+<div class="name-container">
+    <span class="letter" id="letter-M">M</span>
+    <span class="letter" id="letter-u">u</span>
+    <span class="letter" id="letter-s">s</span>
+    <span class="letter" id="letter-k">k</span>
+    <span class="letter" id="letter-a">a</span>
+    <span class="letter" id="letter-n">n</span>
+</div>
+
+<script>
+    $(document).ready(function() {
+        const letters = $(".letter");
+
+        letters.each(function(index) {
+            $(this).delay(index * 300).queue(function(next) { /* Shorten the delay */
+                $(this).css({ width: "auto", opacity: 1 });
+                next();
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

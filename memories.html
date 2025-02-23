@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday!</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet">
+    <style>
+        body {
+            background-color: #1a1a2e;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .lottie-animation {
+            position: absolute;
+            top: 10%;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 800px;
+            height: auto;
+        }
+
+        .btn-next {
+            background-color: #f9f871; /* Match the "Happy Birthday" text color */
+            border: none;
+            color: #1a1a2e; /* Dark background color for the text */
+            padding: 5px 32px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            font-size: 24px; /* Make it a good size */
+            cursor: pointer;
+            border-radius: 50px; /* Rounded corners */
+            opacity: 0; /* Initially hidden */
+            transition: opacity 0.5s ease-in-out; /* Smooth fade-in */
+            font-family: 'Italianno', cursive; /* Or a similar script font */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
+        }
+        .name-container {
+            position: absolute;
+            right: 10px;
+        }
+    </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+</head>
+
+<body>
+
+    <div id="cakeAnimation" class="lottie-animation">
+        <div class="name-container">
+            <button id="nextBtn" class="btn-next">Next</button>
+        </div>
+        <div id="celeAnimation" class="lottie-animation"></div>
+    </div>
+    <script>
+        $(document).ready(function () {
+            const nextBtn = $("#nextBtn");
+
+            setTimeout(function () {
+                nextBtn.css({ opacity: 1 }); // Fade in the button
+            }, 4000); // 4 seconds delay
+
+            // You can add an event listener to the button here if you want it to do something
+
+        });
+
+        const cakeAnimation = lottie.loadAnimation({
+            container: document.getElementById('cakeAnimation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'happy-bdy.json' // Replace with the correct path to your Lottie file
+        });
+        cakeAnimation.setSpeed(1);
+        const celeAnimation = lottie.loadAnimation({
+            container: document.getElementById('celeAnimation'),
+            renderer: 'svg',
+            loop: true,
+            autoplay: true,
+            path: 'celebration.json' // Replace with the correct path to your Lottie file
+        });
+        celeAnimation.setSpeed(0.5);
+    </script>
+</body>
+
+</html>
