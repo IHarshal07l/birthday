@@ -1,61 +1,378 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Muskan Animation</title>
+    <title>Happy Birthday Wishes!</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+        integrity="sha512-9usAa10IRO0HhonpyAIVpjrylPvoDwiPUiKdWk5t3PyolY1cOd4DSE0Ga+ri4AuTroPR5aQvXU9xC6qOPnzFeg=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
     <style>
         body {
-            background-color: #1a1a2e; /* Dark background */
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            overflow: hidden;
+            background: linear-gradient(to bottom, #03001C, #1A1A4B);
+            height: 100vh;
+            color: #fff;
+        }
+         /* Image Styles */
+         #birthday-image {
+            max-width: 30%;
+            border-radius: 15px;
+            margin-bottom: 10px; /* Reduced margin */
+        }
+        .parallax {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+        }
+
+        .star {
+            position: absolute;
+            background-color: #fff;
+            border-radius: 50%;
+            animation: twinkling var(--speed) linear infinite;
+        }
+
+        .star1 {
+            width: 3px;
+            height: 3px;
+            top: 10%;
+            left: 15%;
+            --speed: 3s;
+        }
+
+        .star2 {
+            width: 2px;
+            height: 2px;
+            top: 30%;
+            left: 40%;
+            --speed: 5s;
+        }
+
+        .star3 {
+            width: 4px;
+            height: 4px;
+            top: 60%;
+            left: 25%;
+            --speed: 4s;
+        }
+
+        .star4 {
+            width: 2px;
+            height: 2px;
+            top: 80%;
+            left: 70%;
+            --speed: 6s;
+        }
+
+        .star5 {
+            width: 5px;
+            height: 5px;
+            top: 40%;
+            left: 85%;
+            --speed: 2.5s;
+        }
+
+        @keyframes twinkling {
+            0% {
+                opacity: 0.8;
+            }
+
+            50% {
+                opacity: 0.3;
+            }
+
+            100% {
+                opacity: 0.8;
+            }
+        }
+
+        .celebration-icons {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .celebration-icons i {
+            position: absolute;
+            font-size: 2em;
+            color: rgba(255, 255, 255, 0.7);
+            animation: floatAround 8s linear infinite;
+            transition: transform 0.3s ease;
+        }
+
+        .celebration-icons i:hover {
+            transform: scale(1.2) rotate(360deg);
+        }
+
+        @keyframes floatAround {
+            from {
+                transform: translate(0, 0);
+            }
+
+            to {
+                transform: translate(calc(100vw * var(--x-dir)), calc(100vh * var(--y-dir)));
+            }
+        }
+
+        .wishes-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+
+        .wish-bubble {
+            background-color: rgba(255, 255, 255, 0.9);
+            border-radius: 30px;
+            padding: 30px;
+            box-shadow: 0px;
+            opacity: 0;
+            animation: fadeIn .5s forwards, pulse;
+            position: relative;
+            color: #e91e63;
+            font-weight: bold;
+            max-width: 80%;
+            word-wrap: break-word;
+            font-size: 1.2em;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            from {
+                transform: scale(1);
+            }
+
+            to {
+                transform: scale(1.03);
+            }
+        }
+
+        .button-container {
             display: flex;
             justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            margin: 0;
+            gap: 20px;
         }
 
-        .name-container {
-            display: flex;
-            white-space: nowrap;
-            overflow: hidden;
+        .nav-button {
+            background-color: #e91e63;
+            color: #fff;
+            border: none;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 1.1em;
+            cursor: pointer;
+            transition: background-color .3s ease, transform .2s ease;
         }
 
-        .letter {
-             font-family: 'YourChosenHandwritingFont', cursive; /* Replace with the exact font name */
-            font-size: 6em;
-            color: #f9f871; /*  yellow color from the image */
-            opacity: 0;
-            display: inline-block;
-            width: 0;
-            transition: width 0.3s ease-out, opacity 0.3s ease-out; /* Adjusted transition speed */
-             text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);  /* Add a slight text shadow */
+        .nav-button:hover {
+            background-color: #d81b60;
+            transform: scale(1.05);
         }
+
+        @media (max-width: 600px) {
+            #birthday-image {
+            max-width: 90%;
+            border-radius: 15px;
+            margin-bottom: 10px; /* Reduced margin */
+        }
+            .wish-bubble {
+                font-size: 1em;
+                padding: 20px;
+                max-width: 90%;
+            }
+
+            .celebration-icons i {
+                font-size: 1.5em;
+            }
+
+            .nav-button {
+                font-size: 0.9em;
+                padding: 10px;
+            }
+        }
+
+        /* Confetti Styles */
+        .confetti {
+            position: absolute;
+            width: .5rem;
+            height: .5rem;
+            background-color: #ffcc00;
+            opacity: .9;
+            animation: square-fall linear forwards;
+        }
+
+        @keyframes square-fall {
+            from {
+                transform: translateY(-100vh);
+            }
+
+            to {
+                transform: translateY(100vh);
+            }
+        }
+
+       
     </style>
-    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 </head>
+
 <body>
+    <audio id="birthday-song" src="https://www.bensound.com/bensound-music/bensound-happy.mp3" autoplay loop></audio>
 
-<div class="name-container">
-    <span class="letter" id="letter-M">M</span>
-    <span class="letter" id="letter-u">u</span>
-    <span class="letter" id="letter-s">s</span>
-    <span class="letter" id="letter-k">k</span>
-    <span class="letter" id="letter-a">a</span>
-    <span class="letter" id="letter-n">n</span>
-</div>
+    <div class="parallax">
+        <div class="star star1"></div>
+        <div class="star star2"></div>
+        <div class="star star3"></div>
+        <div class="star star4"></div>
+        <div class="star star5"></div>
+    </div>
 
-<script>
-    $(document).ready(function() {
-        const letters = $(".letter");
+    <div class="celebration-icons">
+        <!-- Celebration icons will be added here -->
+    </div>
 
-        letters.each(function(index) {
-            $(this).delay(index * 300).queue(function(next) { /* Shorten the delay */
-                $(this).css({ width: "auto", opacity: 1 });
-                next();
-            });
+    <div class="wishes-container">
+        <img id="birthday-image" src="" alt="Happy Birthday">
+
+        <div id="wish-bubble" class="wish-bubble glow"></div>
+
+        <div class="button-container">
+            <button id="prev-button" class="nav-button" disabled>
+                <i class="fas fa-arrow-left"></i> Previous
+            </button>
+            <button id="next-button" class="nav-button">Next <i class="fas fa-arrow-right"></i></button>
+        </div>
+    </div>
+
+    <script>
+        
+        document.addEventListener('DOMContentLoaded', function () {
+            // Wishes Display Logic
+            const wishesContainer = document.querySelector('.wishes-container');
+            const wishBubble = document.getElementById('wish-bubble');
+            const prevButton = document.getElementById('prev-button');
+            const nextButton = document.getElementById('next-button');
+            const birthdayImage = document.getElementById('birthday-image');
+            const buttonClickSound = new Audio('path/to/click-sound.mp3');
+
+            const wishes = [
+                {
+                    text: `Dearest [Friend's Name], as you celebrate another year, may your path be paved with joy, success, and boundless opportunities! 🎉🎈`,
+                    image: 'https://img.freepik.com/free-photo/3d-birthday-celebration-cartoon-illustration_23-2151416914.jpg?t=st=1740323197~exp=1740326797~hmac=de832286a8a0b65623a00043c31a479fbd140e87161f54474bb2d4babed5be59&w=900'
+                },
+                {
+                    text: `On this special day, I wish you laughter that echoes through the years and a heart brimming with happiness. Happy Birthday, my amazing friend! ❤️🎂`,
+                    image: 'https://img.freepik.com/free-photo/3d-birthday-celebration-cartoon-illustration_23-2151416854.jpg?t=st=1740323324~exp=1740326924~hmac=84c858825564f4de260ac9c0748251b026b41656ab97c7bc9ca0814daf4bbb61&w=900'
+                },
+                {
+                    text: `To a friend who illuminates every room they enter, may your birthday be as radiant as your spirit and as unforgettable as your presence. ✨`,
+                    image: 'https://img.freepik.com/premium-photo/illustration-boy-girl-with-backpacks-white-background_856795-15105.jpg?w=900'
+                },
+                {
+                    text: `May this year bring you adventures that inspire, accomplishments that fulfill, and dreams that soar. Happy Birthday to someone truly extraordinary! 🚀💖`,
+                    image: 'https://img.freepik.com/premium-photo/girl-flat-cartoon-character-illustration_620650-2001.jpg?w=900'
+                },
+                {
+                    text: `You're not just a friend, you're family. May your birthday be surrounded by love, warmth, and all the things that bring you joy. 🌟`,
+                    image: 'https://img.freepik.com/premium-photo/there-is-drawing-boy-girl-standing-each-other_1035766-34966.jpg?w=900'
+                },
+                {
+                    text: `Sending you oceans of love, a sky full of dreams, and a day filled with endless smiles. Happy Birthday, [Friend's Name]! 💖🌊`,
+                    image: 'https://img.freepik.com/free-photo/illustration-anime-city_23-2151779719.jpg?t=st=1740326557~exp=1740330157~hmac=69247b1e82f63ab76d5e07b891c7f08e3f832013ad52e4c2c9fa43c772f36e39&w=1800'
+                }
+            ];
+
+            let currentWishIndex = 0;
+
+            function displayWish() {
+                wishBubble.textContent = wishes[currentWishIndex].text;
+                birthdayImage.src = wishes[currentWishIndex].image;
+            }
+
+            function updateButtons() {
+                prevButton.disabled = currentWishIndex === 0;
+                nextButton.disabled = currentWishIndex === wishes.length - 1;
+            }
+
+            function createConfetti() {
+                for (let i = 0; i < Math.random() * (30 - 10 + 1) + 10; i++) {
+                    const confetti = document.createElement('div');
+                    confetti.classList.add('confetti');
+                    confetti.style.left = Math.random() * window.innerWidth + 'px';
+                    confetti.style.backgroundColor = '#' + Math.floor(Math.random() * 16777215).toString(16);
+                    confetti.style.animationDuration = Math.random() * (3 - 1 + 1) + 1 + 's';
+                    document.body.appendChild(confetti);
+                    setTimeout(() => confetti.remove(), (Math.random() * (3000 - 1500 + 1) + 1500));
+                }
+            }
+
+            if (prevButton && nextButton) {
+                prevButton.addEventListener('click', function () {
+                    buttonClickSound.play();
+                    currentWishIndex--;
+                    displayWish();
+                    updateButtons();
+                });
+
+                nextButton.addEventListener('click', function () {
+                    buttonClickSound.play();
+                    createConfetti();
+                    currentWishIndex++;
+                    displayWish();
+                    updateButtons();
+                });
+            }
+
+            displayWish();
+            updateButtons();
+
+            // Celebration Icons Logic
+            const celebrationIconsContainer = document.querySelector('.celebration-icons');
+
+            function createCelebrationIcon() {
+                const icon = document.createElement('i');
+                icon.classList.add('fas');
+                const iconType = Math.random() < 0.5 ? 'fa-star' : 'fa-gift';
+                icon.classList.add(iconType);
+                icon.style.left = `${Math.random() * (window.innerWidth - 50)}px`;
+                icon.style.top = `${Math.random() * (window.innerHeight - 50)}px`;
+
+                // Random floating direction
+                icon.style.setProperty('--x-dir', Math.random() * (Math.random() > .5 ? -1 : +1));
+                icon.style.setProperty('--y-dir', Math.random() * (Math.random() > .5 ? -1 : +1));
+                celebrationIconsContainer.appendChild(icon);
+            }
+
+            // Create multiple celebration icons
+            for (let i = 0; i < Math.floor(Math.random() * (30 - 10 + 1) + 10); i++) {
+                createCelebrationIcon();
+            }
         });
-    });
-</script>
+    </script>
 
 </body>
+
 </html>

@@ -2,130 +2,142 @@
 <html lang="en">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Happy Birthday!</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy Birthday!</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bodymovin/5.7.6/lottie.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Italianno&display=swap" rel="stylesheet" />
+  <style>
+    /* General Styles */
+    body {
+      background-color: #1a1a2e;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+      margin: 0;
+      font-family: sans-serif; /* Add a default font */
+      color: #fff; /* Set a default text color */
+      overflow: hidden; /* Prevent scrollbars */
+    }
+
+    /* Lottie Animation Container */
+    .animation-container {
+      position: relative;
+      width: 100%;
+      max-width: 800px; /* Limit width on larger screens */
+      height: auto;
+      display: flex;
+      flex-direction: column; /* Stack animations and button */
+      align-items: center;
+      justify-content: center; /* Center content vertically */
+    }
+
+    .lottie-animation {
+      width: 100%; /* Take up the full width of the container */
+      height: auto;
+    }
+
+    .lottie-animation-cele{
+      position: absolute;
+    }
+
+
+    /* Next Button Styles */
+    .btn-next {
+      position: absolute;
+      bottom: 5%;
+      right: 5%;
+      background-color: #f9f871;
+      border: none;
+      color: #1a1a2e;
+      padding: 0.5em 2em;  /* Use em for relative sizing */
+      text-align: center;
+      text-decoration: none;
+      display: inline-block;
+      font-size: 1.5em; /* Use em for relative sizing */
+      cursor: pointer;
+      border-radius: 50px;
+      opacity: 0;
+      transition: opacity 0.5s ease-in-out;
+      font-family: "Italianno", cursive;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      margin-top: 1em; /* Add some space above the button */
+    }
+
+    /* Name Container (Removed - button is now styled directly) */
+
+
+    /* Media Queries for Responsiveness */
+    @media (max-width: 768px) {
+      /* Smaller screens */
+      .animation-container {
+        max-width: 95%; /* Take up more of the screen */
+      }
+
+      .btn-next {
+        font-size: 1.2em;  /* Adjust font size for smaller screens */
+        padding: 0.4em 1.5em;
+      }
+    }
+
+    @media (max-width: 480px) {
+      /* Even smaller screens (e.g., phones) */
+      .btn-next {
+        position: absolute;
+        bottom: 10%;
+        right: 10%;
+        font-size: 1em; /* Further reduce font size */
+        padding: 0.3em 1em;
+      }
+    }
+  </style>
+
 </head>
 
 <body>
-    
-    <div class="container">
-        <h1 class="title">Happy Birthday, [Friend's Name]!</h1>
-        <p id="birthdayMessage">Wishing you the happiest of birthdays, my dearest friend! May your day be filled with joy, laughter, and everything you've wished for. You're the best!</p>
-        <button id="birthdayButton" class="styled-button">Click for a Surprise!</button>
-
-        <!-- Cake Animation -->
+  <div class="animation-container">
+    <div id="cakeAnimation" class="lottie-animation">
     </div>
-</div>
+    <div id="celeAnimation" class="lottie-animation-cele"></div>
+    <button id="nextBtn" class="btn-next">Next</button>
+  </div>
 
-<canvas id="confetti-canvas"></canvas>
-<div id="cakeAnimation" class="lottie-animation">
-<div id="animation2" class="lottie-animation-clebration" >
+  <script>
+    $(document).ready(function () {
+      const nextBtn = $("#nextBtn");
 
-    <script>
-        //Initialize Lottie Animation for the Cake
-        const cakeAnimation = lottie.loadAnimation({
-            container: document.getElementById('cakeAnimation'), // the DOM element that will contain the animation
-            renderer: 'svg', // render as SVG
-            loop: false, // loop the animation
-            autoplay: true, // start playing the animation immediately
-            path: 'animation.json' // URL to the Lottie JSON file for cake animation
-        });
-        cakeAnimation.setSpeed(0.5);
-        const animation2 = lottie.loadAnimation({
-            container: document.getElementById('animation2'), // the DOM element that will contain the animation
-            renderer: 'svg', // render as SVG
-            loop: true, // loop the animation
-            autoplay: true, // start playing the animation immediately
-            path: 'animation-2.json' // URL to the Lottie JSON file for cake animation
-        });
-        animation2.setSpeed(0.5);
-        document.getElementById('birthdayButton').addEventListener('click', function() {
-            // Add your surprise function here
-        });
+      setTimeout(function () {
+        nextBtn.css({
+          opacity: 1
+        }); // Fade in the button
+      }, 4000); // 4 seconds delay
 
-        document.addEventListener('DOMContentLoaded', function() {
-            const canvas = document.getElementById('confetti-canvas');
-            const ctx = canvas.getContext('2d');
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
+      document.getElementById("nextBtn").addEventListener("click", function () {
+        console.log("next btn click")
+        window.location.href = "birthday.html";
+      });
+    });
 
-            let stars = [];
-            const numStars = 300; // Increased number of stars
+    const cakeAnimation = lottie.loadAnimation({
+      container: document.getElementById("cakeAnimation"),
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "happy-bdy.json", // Replace with the correct path to your Lottie file
+    });
+    cakeAnimation.setSpeed(1);
 
-            // Function to generate a random color
-            function getRandomColor() {
-                const letters = '0123456789ABCDEF';
-                let color = '#';
-                for (let i = 0; i < 6; i++) {
-                    color += letters[Math.floor(Math.random() * 16)];
-                }
-                return color;
-            }
-
-            // Star class
-            class Star {
-                constructor(x, y, radius) {
-                    this.x = x;
-                    this.y = y;
-                    this.radius = radius;
-                    this.opacity = Math.random();
-                    this.speedX = (Math.random() - 0.5) * 0.5; // Horizontal speed
-                    this.speedY = (Math.random() - 0.5) * 0.5; // Vertical speed
-                    this.color = getRandomColor(); // Assign a random color to each star
-                }
-
-                draw() {
-                    ctx.save();
-                    ctx.globalAlpha = this.opacity;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
-                    ctx.fillStyle = this.color; // Use the star's color
-                    ctx.fill();
-                    ctx.restore();
-                }
-
-                update() {
-                    this.x += this.speedX; // Move star horizontally
-                    this.y += this.speedY; // Move star vertically
-
-                    // Wrap around screen edges
-                    if (this.x > canvas.width) this.x = 0;
-                    if (this.x < 0) this.x = canvas.width;
-                    if (this.y > canvas.height) this.y = 0;
-                    if (this.y < 0) this.y = canvas.height;
-
-                    // Randomly change opacity for twinkling effect
-                    this.opacity += (Math.random() - 0.5) * 0.02; 
-                    if (this.opacity > 1) this.opacity = 1;
-                    if (this.opacity < 0) this.opacity = 0;
-                }
-            }
-
-            // Create stars
-            for (let i = 0; i < numStars; i++) {
-                const x = Math.random() * canvas.width;
-                const y = Math.random() * canvas.height;
-                const radius = Math.random() * 2 + 1; // Random radius between 1 and 3
-                stars.push(new Star(x, y, radius));
-            }
-
-            // Animation loop
-            function animate() {
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                stars.forEach(star => {
-                    star.update();
-                    star.draw();
-                });
-                requestAnimationFrame(animate);
-            }
-
-            animate();
-        });
-    </script>
+    const celeAnimation = lottie.loadAnimation({
+      container: document.getElementById("celeAnimation"),
+      renderer: "svg",
+      loop: true,
+      autoplay: true,
+      path: "celebration.json", // Replace with the correct path to your Lottie file
+    });
+    celeAnimation.setSpeed(0.5);
+  </script>
 </body>
 
 </html>
